@@ -1,0 +1,405 @@
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #111; /* توحيد لون الخلفية */
+    color: white;
+    font-family: sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 70px;
+    background-color: white;
+    transition: width 0.3s ease;
+    z-index: 999;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.sidebar.open {
+    width: 300px;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.left-section {
+    flex: 1;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    display: none;
+}
+
+.sidebar.open .left-section {
+    background-color: #000;
+    display: block;
+}
+
+.right-section {
+    flex: 0 0 70px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    position: relative;
+}
+
+.top-icons .logo {
+    width: 40px;
+    margin-bottom: 30px;
+}
+
+.links {
+    list-style: none;
+    padding-left: 0;
+}
+
+.links li {
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+}
+
+.sidebar.open .links li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.links li:nth-child(1) { transition-delay: 0.1s; }
+.links li:nth-child(2) { transition-delay: 0.2s; }
+.links li:nth-child(3) { transition-delay: 0.3s; }
+.links li:nth-child(4) { transition-delay: 0.4s; }
+.links li:nth-child(5) { transition-delay: 0.5s; }
+
+.list-unstyled a {
+    color: black;
+    font-size: 16px;
+    padding: 10px 25px;
+    display: block;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.sidebar.open .list-unstyled a {
+    color: white;
+}
+
+.list-unstyled a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.bottom-icons {
+    font-size: 12px;
+    margin-top: 280px;
+}
+
+.sidebar.open .bottom-icons {
+    background-color: #000;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.social-icons i {
+    margin-right: 10px;
+    color: #000;
+}
+
+.sidebar.open .social-icons i {
+    color: white;
+}
+
+.bottom-icons p {
+    color: #000;
+}
+
+.sidebar.open .bottom-icons p {
+    color: white;
+}
+
+.toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    background-color: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: right 0.3s ease;
+}
+
+.sidebar.open .toggle-btn {
+    right: 15px;
+}
+
+.toggle-btn .close-icon {
+    display: none;
+}
+
+.sidebar.open .toggle-btn .open-icon {
+    display: none;
+}
+
+.sidebar.open .toggle-btn .close-icon {
+    display: block;
+}
+
+.sidebar:not(.open) .links,
+.sidebar:not(.open) .bottom-icons p {
+    display: none;
+}
+
+/* Content */
+.content {
+    margin-left: 70px;
+    transition: margin-left 0.3s ease;
+    background: #000;
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+.sidebar.open ~ .content {
+    margin-left: 300px;
+}
+
+/* Meal Cards */
+.meal-card {
+    /* background: #222; */
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.meal-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.name-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    color: black;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in;
+}
+
+.name-card h5 {
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.meal-card:hover .name-card {
+    transform: translateY(0);
+}
+
+/* Categories */
+.position-relative {
+    position: relative;
+    overflow: hidden;
+}
+
+.category-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.description-tooltip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #000;
+    padding: 10px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;
+    border-radius: 5px;
+}
+
+.description-tooltip p {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: bold;
+}
+
+.position-relative:hover .description-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.position-relative:hover .category-img {
+    opacity: 0.7;
+}
+
+/* Meal Details */
+#mealDetails {
+    /* background: #222; */
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+}
+
+#mealDetails img {
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#mealDetails h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#mealDetails p,
+#mealDetails ul {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+#mealDetails .btn {
+    margin: 5px;
+}
+
+/* Area and Ingredients Cards */
+.area-card,
+.ingredient-card {
+    /* background: #222; */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.area-card:hover,
+.ingredient-card:hover {
+    transform: scale(1.05);
+}
+
+.area-card h5,
+.ingredient-card h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.ingredient-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+
+ .valid-icon {
+            color: green;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .invalid-icon {
+            color: red;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .text-danger {
+            font-size: 0.8rem;
+            margin-top: 5px;
+            z-index: 10;
+        }
+       
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar.open {
+        width: 100%;
+    }
+
+    .sidebar.open ~ .content {
+        margin-left: 0;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .meal-card img {
+        height: 150px;
+    }
+
+    .name-card h5 {
+        font-size: 24px;
+    }
+
+    .description-tooltip p {
+        font-size: 16px;
+    }
+
+    #mealDetails h2 {
+        font-size: 1.5rem;
+    }
+
+    #mealDetails img {
+        max-height: 200px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
