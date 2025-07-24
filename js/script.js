@@ -84,7 +84,7 @@ const sectionElement = document.getElementById(`${section}-section`);
 mealsDiv.innerHTML = ''; 
     let cartoona = ''; 
 for (let i = 0; i < meals.length; i++) {
-    cartoona+=`<div class="col-md-3">
+    cartoona+=`<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="meal-card" onclick="showMealDetails('${meals[i].idMeal}')">
                         <img src="${meals[i].strMealThumb}" alt="${meals[i].strMeal}">
                         <div class="p-3 name-card">
@@ -132,7 +132,7 @@ mealsDiv.innerHTML=cartoona;
         var cartoona="";
         for (let i = 0; i < categories.length; i++) {
                const shortDescription = categories[i].strCategoryDescription.substring(0, 150) + '...';
-          cartoona+=`  <div class="col-md-3">
+          cartoona+=`  <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="position-relative">
                         <img class="w-100 category-img p-3" src="${categories[i].strCategoryThumb}" alt="${categories[i].strCategory}" onclick="fetchMealsByCategory('${categories[i].strCategory}')">
                         <div class="description-tooltip position-absolute">
@@ -198,7 +198,7 @@ mealsDiv.innerHTML=cartoona;
 
         mealDetailsDiv.innerHTML = `
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="img-fluid">
                 </div>
                 <div class="col-md-8">
@@ -243,7 +243,7 @@ mealsDiv.innerHTML=cartoona;
         areasDiv.innerHTML = '';
         areas.forEach(area => {
             const col = document.createElement('div');
-            col.className = 'col-md-3';
+            col.className = 'col-lg-3 col-md-4 col-sm-6 mb-4';
             col.innerHTML = `
                 <div class="area-card text-center p-3" onclick="fetchMealsByArea('${area.strArea}')">
                 <i class="fa-solid fa-house-laptop fs-1"></i>
@@ -293,7 +293,7 @@ mealsDiv.innerHTML=cartoona;
         ingredients.forEach(ingredient => {
             const shortDescription = ingredient.strDescription ? ingredient.strDescription.substring(0, 150) + '...' : 'No description';
             const col = document.createElement('div');
-            col.className = 'col-md-3';
+            col.className = 'col-lg-3 col-md-4 col-sm-6 mb-4';
             col.innerHTML = `
                 <div class="ingredient-card text-center p-3" onclick="fetchMealsByIngredient('${ingredient.strIngredient}')">
 

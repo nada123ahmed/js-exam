@@ -394,7 +394,71 @@ body {
     }
 }
 
+/* =================================
+   Responsive Design
+   ================================= */
+@media (max-width: 768px) {
+    /* -- Sidebar on Mobile -- */
+    .sidebar {
+        /* عند الإغلاق، الشريط الجانبي سيكون فوق المحتوى وليس بجانبه */
+        z-index: 1000; 
+    }
 
+    .sidebar.open {
+        width: 100%; /* عند الفتح، يغطي الشاشة بالكامل */
+    }
+
+    .content {
+        margin-left: 0; /* المحتوى يأخذ عرض الشاشة كاملاً دائماً */
+    }
+
+    .sidebar.open ~ .content {
+        margin-left: 0;
+    }
+
+    /* -- Font Sizes -- */
+    h2 {
+        font-size: 1.7rem; /* تصغير حجم العناوين الرئيسية */
+    }
+
+    h5 {
+        font-size: 1.1rem; /* تصغير حجم العناوين الفرعية */
+    }
+    
+    .name-card h5 {
+        font-size: 20px; /* حجم اسم الوجبة داخل الكارت */
+    }
+
+    p, .form-control, .btn {
+        font-size: 0.9rem; /* تصغير حجم النصوص العامة وحقول الإدخال */
+    }
+
+    /* -- Layout & Images -- */
+    .meal-card img {
+        height: 200px; /* زيادة ارتفاع الصورة قليلاً في عرض العمودين */
+    }
+
+    #mealDetails .col-md-4,
+    #mealDetails .col-md-8 {
+        /* تأكد من أن الصور والنصوص في صفحة التفاصيل تأخذ العرض الكامل */
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    #mealDetails img {
+        margin-bottom: 1rem; /* مسافة بين الصورة والنص عند تكدسهما */
+    }
+
+    /* -- Contact Form -- */
+    /* بما أننا استخدمنا w-100 في الـ HTML، لا حاجة لتعديل هنا */
+    /* لكن نتأكد أن الحقول لا تلتصق ببعضها */
+    #contactForm .col-md-6 {
+        margin-bottom: 1rem;
+    }
+    #contactForm .row > div:last-child {
+        margin-bottom: 0;
+    }
+}
 
 
 
